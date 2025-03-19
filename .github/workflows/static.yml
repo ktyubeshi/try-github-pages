@@ -22,11 +22,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # 11tyでビルドしてデプロイするジョブ
-  build-and-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  # ビルドジョブ
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -44,16 +41,24 @@ jobs:
       - name: Build 11ty site
         run: npm run build
       
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        with:
-          enablement: true
-      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # 11tyの出力ディレクトリをアップロード
           path: '_site'
+
+  # デプロイジョブ
+  deploy:
+    # ビルドジョブへの依存関係を追加
+    needs: build
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
       
       - name: Deploy to GitHub Pages
         id: deployment
