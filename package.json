@@ -4,8 +4,8 @@
   "description": "11tyで作成された静的サイト",
   "main": "index.js",
   "scripts": {
-    "build": "eleventy",
-    "start": "eleventy --serve"
+    "build": "eleventy --pathprefix=try-github-pages",
+    "start": "eleventy --serve --pathprefix=try-github-pages"
   },
   "keywords": [
     "11ty",

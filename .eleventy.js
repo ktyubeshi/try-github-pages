@@ -10,6 +10,7 @@ module.exports = function(eleventyConfig) {
   });
   
   return {
+    pathPrefix: "/try-github-pages/",
     dir: {
       input: "src",
       output: "_site",
