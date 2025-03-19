@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: ブログ
+---
+
+<h1>ブログ記事</h1>
+
+<ul class="post-list">
+{%- for post in collections.post | reverse -%}
+  <li class="post-item">
+    <h2><a href="{{ post.url | url }}">{{ post.data.title }}</a></h2>
+    <time datetime="{{ post.date | htmlDateString }}">{{ post.date | dateFilter }}</time>
+    {% if post.data.description %}
+      <p>{{ post.data.description }}</p>
+    {% endif %}
+  </li>
+{%- endfor -%}
+</ul> 

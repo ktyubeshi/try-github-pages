@@ -1,0 +1,23 @@
+{
+  "name": "my-11ty-site",
+  "version": "1.0.0",
+  "description": "11tyで作成された静的サイト",
+  "main": "index.js",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "keywords": [
+    "11ty",
+    "eleventy",
+    "static-site"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  },
+  "dependencies": {
+    "luxon": "^3.4.4"
+  }
+} 

@@ -1,0 +1,20 @@
+---
+layout: base.njk
+title: ホーム
+---
+
+<h1>11tyへようこそ！</h1>
+
+<p>これは11tyで構築されたシンプルな静的サイトです。</p>
+
+<section class="featured-posts">
+  <h2>最新の投稿</h2>
+  <ul>
+    {%- for post in collections.post | reverse | limit(3) -%}
+      <li>
+        <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+        <span class="date">{{ post.date | dateFilter }}</span>
+      </li>
+    {%- endfor -%}
+  </ul>
+</section> 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if title %}{{ title }} | {% endif %}マイ11tyサイト</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">ホーム</a></li>
+        <li><a href="/about/">概要</a></li>
+        <li><a href="/blog/">ブログ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}
+    {{ content | safe }}
+    {% endblock %}
+  </main>
+
+  <footer>
+    <p>&copy; {{ page.date.getFullYear() }} マイ11tyサイト</p>
+  </footer>
+</body>
+</html> 
