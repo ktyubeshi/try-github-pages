@@ -1,20 +1,51 @@
 ---
 layout: base.njk
 title: ホーム
+description: シンプルで使いやすい11tyで構築された静的サイト
 ---
 
-<h1>11tyへようこそ！</h1>
-
-<p>これは11tyで構築されたシンプルな静的サイトです。</p>
+<section class="hero">
+  <h1>シンプルな静的サイト</h1>
+  <p class="lead">11tyで構築された静的サイトへようこそ。<br>必要な情報を分かりやすく提供します。</p>
+  <div class="hero-buttons">
+    <a href="{{ '/blog/' | url }}" class="btn">ブログを見る <i class='bx bx-right-arrow-alt'></i></a>
+    <a href="{{ '/about/' | url }}" class="btn btn-outline">サイトについて</a>
+  </div>
+</section>
 
 <section class="featured-posts">
   <h2>最新の投稿</h2>
-  <ul>
+  <div class="post-list">
     {%- for post in collections.post | reverse | limit(3) -%}
-      <li>
-        <a href="{{ post.url | url }}">{{ post.data.title }}</a>
-        <span class="date">{{ post.date | dateFilter }}</span>
-      </li>
+      <article class="post-item">
+        <span class="date"><i class='bx bx-calendar'></i> {{ post.date | dateFilter }}</span>
+        <h3><a href="{{ post.url | url }}">{{ post.data.title }}</a></h3>
+        {% if post.data.description %}
+          <p>{{ post.data.description }}</p>
+        {% endif %}
+        <a href="{{ post.url | url }}" class="read-more">続きを読む <i class='bx bx-right-arrow-alt'></i></a>
+      </article>
     {%- endfor -%}
-  </ul>
+  </div>
+</section>
+
+<section class="features">
+  <h2>サイトの特徴</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <i class='bx bx-paint feature-icon'></i>
+      <h3>シンプルなデザイン</h3>
+      <p>余計な装飾を排除し、情報を見やすく整理したミニマルなレイアウト</p>
+    </div>
+    <div class="feature-card">
+      <i class='bx bx-mobile-alt feature-icon'></i>
+      <h3>レスポンシブ対応</h3>
+      <p>様々な画面サイズに対応したレイアウト</p>
+    </div>
+    <div class="feature-card">
+      <i class='bx bx-time feature-icon'></i>
+      <h3>高速読み込み</h3>
+      <p>静的サイトの特性を活かした素早い表示</p>
+    </div>
+  </div>
 </section> 

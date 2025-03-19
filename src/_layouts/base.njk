@@ -3,28 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if title %}{{ title }} | {% endif %}マイ11tyサイト</title>
+  <title>{% if title %}{{ title }} | {% endif %}シンプルサイト</title>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+  <meta name="description" content="{% if description %}{{ description }}{% else %}シンプルで使いやすい11tyで構築された静的サイト{% endif %}">
 </head>
 <body>
   <header>
-    <nav>
-      <ul>
-        <li><a href="{{ '/' | url }}">ホーム</a></li>
-        <li><a href="{{ '/about/' | url }}">概要</a></li>
-        <li><a href="{{ '/blog/' | url }}">ブログ</a></li>
-      </ul>
-    </nav>
+    <div class="container site-header">
+      <a href="{{ '/' | url }}" class="site-title">シンプルサイト</a>
+      <nav>
+        <ul>
+          <li><a href="{{ '/' | url }}"><i class='bx bx-home'></i> ホーム</a></li>
+          <li><a href="{{ '/about/' | url }}"><i class='bx bx-info-circle'></i> 概要</a></li>
+          <li><a href="{{ '/blog/' | url }}"><i class='bx bx-book-content'></i> ブログ</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="container animate-fade-in">
     {% block content %}
     {{ content | safe }}
     {% endblock %}
   </main>
 
   <footer>
-    <p>&copy; {{ page.date.getFullYear() }} マイ11tyサイト</p>
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; {{ page.date.getFullYear() }} シンプルサイト | Built with 11ty</p>
+        <div class="social-links">
+          <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+          <a href="#" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+          <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+        </div>
+      </div>
+    </div>
   </footer>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // アニメーション用のクラスを動的に追加
+      const elements = document.querySelectorAll('.post-item, .featured-posts');
+      elements.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('animate-fade-in');
+        }, index * 100);
+      });
+    });
+  </script>
 </body>
 </html> 
